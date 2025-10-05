@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeplerX</title>
+    <link rel="stylesheet" href="/app/Front/styles.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/>
+                </svg>
+            </div>
+            <h1>Exoplanet Research Database</h1>
+        </div>
+        <p class="subtitle">Scientific Data Entry Form - Version 2.4.1</p>
+
+        <form id="exoplanetForm">
+             Basic Identification 
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-icon">📄</span>
+                    <h2 class="section-title">Basic Identification</h2>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Official Designation <span class="required">*</span></label>
+                        <input type="text" placeholder="e.g., HD 209458 b" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Alternative Name</label>
+                        <input type="text" placeholder="e.g., Osiris">
+                    </div>
+                    <div class="form-group">
+                        <label>Detection Method <span class="required">*</span></label>
+                        <select required>
+                            <option value="">Select method</option>
+                            <option value="transit">Transit</option>
+                            <option value="radial-velocity">Radial Velocity</option>
+                            <option value="direct-imaging">Direct Imaging</option>
+                            <option value="microlensing">Microlensing</option>
+                            <option value="astrometry">Astrometry</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grid form-grid-2" style="margin-top: 1rem;">
+                    <div class="form-group">
+                        <label>Discovery Year <span class="required">*</span></label>
+                        <input type="text" placeholder="YYYY" pattern="[0-9]{4}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Discovery Facility/Telescope</label>
+                        <input type="text" placeholder="e.g., Kepler Space Telescope">
+                    </div>
+                </div>
+            </div>
+
+             Orbital Parameters 
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-icon">⭐</span>
+                    <h2 class="section-title">Orbital Parameters</h2>
+                </div>
+                <div class="form-grid form-grid-4">
+                    <div class="form-group">
+                        <label>Orbital Period (days)</label>
+                        <input type="text" placeholder="e.g., 3.52474859">
+                    </div>
+                    <div class="form-group">
+                        <label>Semi-Major Axis (AU)</label>
+                        <input type="text" placeholder="e.g., 0.0469">
+                    </div>
+                    <div class="form-group">
+                        <label>Eccentricity (e)</label>
+                        <input type="text" placeholder="e.g., 0.0">
+                    </div>
+                    <div class="form-group">
+                        <label>Inclination (degrees)</label>
+                        <input type="text" placeholder="e.g., 86.71">
+                    </div>
+                </div>
+            </div>
+
+             Physical Properties 
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-icon">📊</span>
+                    <h2 class="section-title">Physical Properties</h2>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Mass (M<sub>J</sub>)</label>
+                        <input type="text" placeholder="e.g., 0.69">
+                    </div>
+                    <div class="form-group">
+                        <label>Radius (R<sub>J</sub>)</label>
+                        <input type="text" placeholder="e.g., 1.38">
+                    </div>
+                    <div class="form-group">
+                        <label>Density (g/cm³)</label>
+                        <input type="text" placeholder="e.g., 0.31">
+                    </div>
+                </div>
+                <div class="form-grid" style="margin-top: 1rem;">
+                    <div class="form-group">
+                        <label>Equilibrium Temp. (K)</label>
+                        <input type="text" placeholder="e.g., 1449">
+                    </div>
+                    <div class="form-group">
+                        <label>Surface Gravity (m/s²)</label>
+                        <input type="text" placeholder="e.g., 9.4">
+                    </div>
+                    <div class="form-group">
+                        <label>ESI Score (0-1)</label>
+                        <input type="text" placeholder="e.g., 0.87">
+                    </div>
+                </div>
+            </div>
+
+             Host Star Properties 
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-icon">⭐</span>
+                    <h2 class="section-title">Host Star Properties</h2>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Host Star Name</label>
+                        <input type="text" placeholder="e.g., HD 209458">
+                    </div>
+                    <div class="form-group">
+                        <label>Spectral Type</label>
+                        <input type="text" placeholder="e.g., G0V">
+                    </div>
+                    <div class="form-group">
+                        <label>Distance (parsecs)</label>
+                        <input type="text" placeholder="e.g., 47.5">
+                    </div>
+                </div>
+                <div class="form-grid" style="margin-top: 1rem;">
+                    <div class="form-group">
+                        <label>Stellar Mass (M<sub>☉</sub>)</label>
+                        <input type="text" placeholder="e.g., 1.119">
+                    </div>
+                    <div class="form-group">
+                        <label>Stellar Radius (R<sub>☉</sub>)</label>
+                        <input type="text" placeholder="e.g., 1.155">
+                    </div>
+                    <div class="form-group">
+                        <label>Detection Status</label>
+                        <select>
+                            <option value="">Select status</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="candidate">Candidate</option>
+                            <option value="false-positive">False Positive</option>
+                            <option value="controversial">Controversial</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+             Additional Data 
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-icon">📄</span>
+                    <h2 class="section-title">Additional Data</h2>
+                </div>
+                <div class="form-group full-width">
+                    <label>Atmospheric Composition</label>
+                    <input type="text" placeholder="e.g., H2, He, Na, H2O (detected)">
+                </div>
+                <div class="form-group full-width" style="margin-top: 1rem;">
+                    <label>Research Notes & Observations</label>
+                    <textarea placeholder="Enter detailed observations, measurement uncertainties, follow-up requirements, or any relevant scientific notes..."></textarea>
+                </div>
+            </div>
+
+             Buttons 
+            <div class="button-group">
+                <button type="submit" class="btn-submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Submit to Database
+                </button>
+                <button type="button" class="btn-clear" onclick="clearForm()">Clear Form</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

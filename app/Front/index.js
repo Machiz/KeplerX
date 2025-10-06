@@ -1,34 +1,45 @@
-     // Form submission handler
-        document.getElementById('exoplanetForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Show success message
-            alert('Data submitted successfully to the Exoplanet Research Database!');
-            console.log('Submitted data:', data);
-            
-            // Optionally clear form after submission
-            // this.reset();
+// Form submission handler
+document.getElementById('exoplanetForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // 1. Recolectar datos del formulario
+    const formData = new FormData(this);
+    let data = Object.fromEntries(formData);
+
+    // 2. Convertir todos los valores a número (float)
+    for (let key in data) {
+        data[key] = parseFloat(data[key]) || 0;
+    }
+
+    try {
+        // 3. Enviar al backend FastAPI
+        let response = await fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
         });
 
-        // Clear form function
-        function clearForm() {
-            if (confirm('Are you sure you want to clear all form data?')) {
-                document.getElementById('exoplanetForm').reset();
-            }
-        }
+        let result = await response.json();
 
-        // Add input validation for numeric fields
-        const numericInputs = document.querySelectorAll('input[type="text"]');
-        numericInputs.forEach(input => {
-            if (input.placeholder.includes('e.g.,') && 
-                (input.placeholder.includes('.') || input.placeholder.match(/\d/))) {
-                input.addEventListener('input', function(e) {
-                    // Allow numbers, dots, and minus signs for scientific notation
-                    this.value = this.value.replace(/[^0-9.\-]/g, '');
-                });
-            }
-        });
+        // 4. Mostrar resultado en el div #result
+        document.getElementById("result").innerHTML = `
+            <div class="prediction-box">
+                <i class="fa-solid fa-robot"></i> <b>Predicción:</b> ${result.prediction}
+            </div>
+        `;
+
+        console.log("✅ Prediction response:", result);
+
+    } catch (error) {
+        console.error("❌ Error calling API:", error);
+        alert("Error enviando datos al backend. Revisa la consola.");
+    }
+});
+
+// Clear form function
+function clearForm() {
+    if (confirm('¿Seguro que quieres limpiar todos los campos?')) {
+        document.getElementById('exoplanetForm').reset();
+        document.getElementById("result").innerHTML = "";
+    }
+}
